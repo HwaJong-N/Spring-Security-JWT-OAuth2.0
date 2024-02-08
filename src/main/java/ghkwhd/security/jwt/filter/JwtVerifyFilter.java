@@ -23,7 +23,7 @@ import java.util.Map;
 public class JwtVerifyFilter extends OncePerRequestFilter {
 
     // 상품 이미지가 보이지 않기에 상품 이미지를 출력하는 /api/items/view 경로를 추가
-    private static final String[] whitelist = {"/signUp", "/login" , "/refresh"};
+    private static final String[] whitelist = {"/signUp", "/login" , "/refresh", "/", "/index.html"};
 
     private static void checkAuthorizationHeader(String header) {
         if(header == null) {
