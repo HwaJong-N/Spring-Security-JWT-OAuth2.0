@@ -1,7 +1,6 @@
 package ghkwhd.security.security.config;
 
 import ghkwhd.security.jwt.filter.JwtVerifyFilter;
-import ghkwhd.security.oauth2.handler.OAuth2LoginSuccessHandler;
 import ghkwhd.security.oauth2.service.OAuth2UserService;
 import ghkwhd.security.security.handler.CommonLoginFailHandler;
 import ghkwhd.security.security.handler.CommonLoginSuccessHandler;
@@ -60,11 +59,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler() {
-        return new OAuth2LoginSuccessHandler();
-    }
-
-    @Bean
     public JwtVerifyFilter jwtVerifyFilter() {
         return new JwtVerifyFilter();
     }
@@ -93,7 +87,7 @@ public class SecurityConfig {
 
         http.oauth2Login(httpSecurityOAuth2LoginConfigurer ->
                 httpSecurityOAuth2LoginConfigurer.loginPage("/oauth2/login")
-                        .successHandler(oAuth2LoginSuccessHandler())
+                        .successHandler(commonLoginSuccessHandler())
                         .userInfoEndpoint(userInfoEndpointConfig ->
                                 userInfoEndpointConfig.userService(oAuth2UserService)));
 

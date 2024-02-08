@@ -25,12 +25,12 @@ public class CommonLoginSuccessHandler implements AuthenticationSuccessHandler {
 
         log.info("authentication.getPrincipal() = {}", principal);
 
-        Map<String, Object> memberInfo = principal.getMemberInfo();
-        memberInfo.put("accessToken", JwtUtils.generateToken(memberInfo, JwtConstants.ACCESS_EXP_TIME));
-        memberInfo.put("refreshToken", JwtUtils.generateToken(memberInfo, JwtConstants.REFRESH_EXP_TIME));
+        Map<String, Object> responseMap = principal.getMemberInfo();
+        responseMap.put("accessToken", JwtUtils.generateToken(responseMap, JwtConstants.ACCESS_EXP_TIME));
+        responseMap.put("refreshToken", JwtUtils.generateToken(responseMap, JwtConstants.REFRESH_EXP_TIME));
 
         Gson gson = new Gson();
-        String json = gson.toJson(memberInfo);
+        String json = gson.toJson(responseMap);
 
         response.setContentType("application/json; charset=UTF-8");
 
